@@ -18,15 +18,7 @@ export class courseController {
 
 
 
-    @Get(':id')
-    async getData (@Param('id') id: string): Promise<Course> {
-        const user = await this.courses.getData(id);
-        if (!user) {
-            throw new NotFoundException('User does not exist!');
-        } else {
-            return user;
-        }
-    }
+   
 
 
 
