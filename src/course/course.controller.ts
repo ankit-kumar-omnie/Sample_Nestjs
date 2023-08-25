@@ -16,7 +16,10 @@ export class courseController {
         return this.courses.getCourse();
     }
 
-
+    @Get(':id')
+    getCourseById(@Param('id') id:string) {
+        return this.courses.getCourseById(id);
+    }
 
    
 

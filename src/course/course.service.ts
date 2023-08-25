@@ -27,6 +27,11 @@ export class courseService {
    }
 
 
+   // function to receive data by Id.
+
+   async getCourseById(id): Promise<Course> {
+      return this.userModel.findById(id);
+   }
 
 
 
