@@ -1,5 +1,4 @@
-import { Body, Controller, Post, Put , Param, Delete,
-     NotFoundException} from "@nestjs/common";
+import { Body, Controller, Post, Put , Param, Delete} from "@nestjs/common";
 import { courseService } from "./course.service";
 import { Get } from "@nestjs/common";
 import { Course } from "src/schemas/course.schema";
