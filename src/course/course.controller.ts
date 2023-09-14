@@ -1,8 +1,8 @@
-import { Body, Controller, Post, Put , Param, Delete} from "@nestjs/common";
+import { Body, Controller, Post, Put, Param, Delete, NotFoundException } from "@nestjs/common";
 import { courseService } from "./course.service";
 import { Get } from "@nestjs/common";
-import { Course } from "src/schemas/course.schema";
-import { CourseUpdateDto } from "src/course.dto/courseUpdate.dto";
+import { CourseUpdateDto } from "src/course/course.dto/courseUpdate.dto";
+import { CourseCreateDto } from "./course.dto/courseCreate.dto";
 
 
 @Controller('course')
@@ -10,38 +10,47 @@ export class courseController {
 
     constructor(private courses: courseService) { }
 
+
+    // Get to get all courses.
     @Get('/all')
-    getCourse() {
-        return this.courses.getCourse();
+    getCourses() {
+        try{
+            return this.courses.getCourses()
+        }
+        catch{
+            throw new NotFoundException;
+        }
     }
 
+
+
+    // Get to get course by Id
     @Get(':id')
-    getCourseById(@Param('id') id:string) {
+    getCourseById(@Param('id') id: string) {
         return this.courses.getCourseById(id);
     }
 
-   
-
-
-
+    
+    
+    // Post to create new entry.
     @Post()
-    async createCourse(@Body() courseDto: Course) {
+    createCourse(@Body() courseDto: CourseCreateDto) {
         return this.courses.createCourse(courseDto);
     }
 
 
+    // Put to update an entry.
     @Put(':id')
-    async updateCourse( 
-        @Param('id') id:string , @Body() updateData:CourseUpdateDto)
-        {
-            return this.courses.updateCourse(id,updateData);
-        }
+    updateCourse(
+        @Param('id') id: string, @Body() updateData: CourseUpdateDto) {
+        return this.courses.updateCourse(id, updateData);
+    }
 
 
+    // Delete to delete an entry.
     @Delete(':id')
-    async deleteCourse( @Param('id') id:string ) {
+    deleteCourse(@Param('id') id: string) {
         return this.courses.deleteCourse(id);
-        }
-    
+    }
 
 }

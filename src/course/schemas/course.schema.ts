@@ -3,13 +3,13 @@ import { Document } from 'mongoose'
 
 export type CourseDocument = Course & Document
 
-@Schema()
+@Schema({timestamps:true})
 export class Course {
-    @Prop()
+    @Prop({required:true})
     name: string;
 
 
-    @Prop()
+    @Prop({required:true})
     duration: string;
 
 
