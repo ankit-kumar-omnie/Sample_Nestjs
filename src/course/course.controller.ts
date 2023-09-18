@@ -13,7 +13,7 @@ export class courseController {
     constructor(private courses: courseService) { }
 
 
-    // To get the authorized user info
+    // To get the authenticated user info from an end-point
     @Get('userinfo')
     getUserInfo(@Request() req) : string {
         return req.user;
