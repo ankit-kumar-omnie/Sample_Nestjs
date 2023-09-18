@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Put, Param, Delete, NotFoundException, UseGuards } from "@nestjs/common";
+import { Body, Controller, Post, Put, Param, Delete, NotFoundException, UseGuards, Request, Req } from "@nestjs/common";
 import { courseService } from "./course.service";
 import { Get } from "@nestjs/common";
 import { CourseUpdateDto } from "src/course/course.dto/courseUpdate.dto";
@@ -11,6 +11,13 @@ import { AuthGuard } from "@nestjs/passport";
 export class courseController {
 
     constructor(private courses: courseService) { }
+
+
+    // To get the authorized user info
+    @Get('userinfo')
+    getUserInfo(@Request() req) : string {
+        return req.user;
+    }
 
 
     // Get to get all courses.
