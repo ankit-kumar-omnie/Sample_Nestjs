@@ -8,7 +8,18 @@ export class UserService {
         username: "admin",
         password: "admin02",
         email: "admin@gmail.com",
-    }]
+    },
+        {
+            username: "User1",
+            password: "User01",
+            email: "User1@gmail.com",
+        },
+        {
+            username: "User02",
+            password: "User02",
+            email: "User2@gmail.com",
+        },
+]
 
 
     getUserByName(userName : string) : User{
