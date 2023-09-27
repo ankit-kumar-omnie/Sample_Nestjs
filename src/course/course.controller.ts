@@ -1,14 +1,23 @@
-import { Body, Controller, Post, Put, Param, Delete, NotFoundException } from "@nestjs/common";
+import { Body, Controller, Post, Put, Param, Delete, NotFoundException, UseGuards, Request, Req } from "@nestjs/common";
 import { courseService } from "./course.service";
 import { Get } from "@nestjs/common";
 import { CourseUpdateDto } from "src/course/course.dto/courseUpdate.dto";
 import { CourseCreateDto } from "./course.dto/courseCreate.dto";
+import { AuthGuard } from "@nestjs/passport";
 
 
 @Controller('course')
+@UseGuards(AuthGuard('local'))
 export class courseController {
 
     constructor(private courses: courseService) { }
+
+
+    // To get the authenticated user info from an end-point
+    @Get('userinfo')
+    getUserInfo(@Request() req) : string {
+        return req.user;
+    }
 
 
     // Get to get all courses.

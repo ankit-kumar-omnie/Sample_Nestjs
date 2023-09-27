@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { courseModule } from './course/course.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -17,7 +19,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
   }),
     ConfigModule.forRoot({isGlobal : true,
-     envFilePath: ".env"}), courseModule]
+     envFilePath: ".env"}), courseModule, UserModule, AuthModule]
   
 })
 export class AppModule {}
